@@ -1,18 +1,24 @@
 CC = cc
-CFLAGS = 
+CFLAGS = -Wall -Wextra -DDEBUG_TRACE_EXECUTION 
 
-TARGET = clox
+SRCDIR = src
+OBJDIR = obj
+BINDIR = bin
 
-SRCS = main.c chunk.c debug.c memory.c value.c
-OBJS = $(SRCS:.c=.o)
+TARGET = ${BINDIR}/clox
+
+SRCS = $(wildcard $(SRCDIR)/*.c)
+OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
+	mkdir -p $(BINDIR)
 	$(CC) $(OBJS) -o $(TARGET)
 
-%.o: %.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
-
+	
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJDIR) $(BINDIR)
