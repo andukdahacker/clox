@@ -14,6 +14,8 @@ typedef struct {
     Value* stackTop;
 } VM;
 
+VM vm;
+
 typedef enum {
     INTERPRETER_OK,
     INTERPRETER_COMPILE_ERROR,
@@ -22,7 +24,7 @@ typedef enum {
 
 void initVM();
 void freeVM();
-InterpreterResult interpret(Chunk* chunk);
+InterpreterResult interpret(const char* source);
 void push(Value value);
 Value pop();
 
