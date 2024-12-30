@@ -12,9 +12,11 @@ typedef struct {
     uint8_t* ip;
     Value stack[STACK_MAX];
     Value* stackTop;
+
+    Obj* objects;
 } VM;
 
-VM vm;
+extern VM vm;
 
 typedef enum {
     INTERPRETER_OK,

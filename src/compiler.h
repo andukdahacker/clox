@@ -4,6 +4,7 @@
 #include "chunk.h"
 #include "scanner.h"
 #include <stdbool.h>
+#include "object.h"
 
 typedef struct {
   Token current;

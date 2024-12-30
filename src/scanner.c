@@ -164,8 +164,9 @@ static TokenType identifierType() {
 }
 
 static Token identifier() {
-  while (isAlpha(peek()) || isDigit(peek()))
+  while (isAlpha(peek()) || isDigit(peek())) {
     advance();
+  }
   return makeToken(identifierType());
 }
 
@@ -199,6 +200,10 @@ Token scanToken() {
   }
 
   char c = advance();
+
+  if(isAlpha(c)) {
+      return identifier();
+  }
 
   if (isDigit(c)) {
     return number();
